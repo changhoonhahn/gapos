@@ -41,6 +41,7 @@ weights
     w_{i, \mathrm{FA}} = \frac{128}{N_{i, \mathrm{FA}}}
 \end{equation}
 to each BGS galaxy. 
+{\color{red} explain what this means} 
 
 \begin{figure}[h]
 \begin{center}
@@ -48,8 +49,8 @@ to each BGS galaxy.
     \caption{
         Redsift success rate of BGS Bright galaxies as a function of 
         $r_{\rm fiber}$ and TSNR2.
-        TSNR2 is a statistic that roughly corresponds to the signal-to-noise
-        ratio of the observed spectrum. 
+        TSNR2 is a statistic that quantifies the signal-to-noise ratio of the
+        observed spectrum. 
         The color map represents the mean redshift success rate in each hexbin.
         We mark the TSNR2 bins (black dashed) that we use to separately fit the
         redshift success rate as a function of $r_{\rm fiber}$ using
@@ -61,23 +62,32 @@ to each BGS galaxy.
 \end{figure}
 
 Although we measure a spectrum for each galaxy assigned a fiber, we do not
-accurately measure a redshift for every spectra. 
+accurately measure redshifts for every spectra. 
 This redshift measurement failure significantly contributes to spectroscopic
 incompleteness. 
 For BGS, redshift failure of an observed galaxy spectrum depends mainly on
 fiber magnitude and a statistic, TSNR2.
-Fiber magnitude is derived from the predicted flux of the BGS object within a
-1.5\arcsec diameter fiber; we use $r$-band fiber magnitude $r_{\rm fiber}$. 
+Fiber magnitude is the predicted flux of the BGS object within a 1.5\arcsec
+diameter fiber; we use $r$-band fiber magnitude, $r_{\rm fiber}$.  
 TSNR2 roughly corresponds to the signal-to-noise ratio of the spectrum and is 
-used to calibrate the effective exposure times in DESI observations
+the statistic used to calibrate the effective exposure times in DESI
+observations (\todo{CITE}).
 
-In Figure~\ref{fig:zfail0}, we present the redshift success rate of BGS Bright
-galaxies as a function of $r_{\rm fiber}$ and TSNR2.
-
-\begin{equation} \label{eq:zsucc}
-    f_{z-{\rm success}}(r_{\rm fiber}) = \frac{1}{2} \left(1-{\rm erf}(c_0 (r_{\rm fiber} - c_1))\right)
-\end{equation}
-
+In Figure~\ref{fig:zfail0}, we present the redshift, $z$, success rate of BGS
+Bright galaxies as a function of $r_{\rm fiber}$ and TSNR2.
+In each hexbin, the color map represents the mean $z$-success rate. 
+We include all hexbins with more than 2 galaxies. 
+Overall, the $z$-success rate depends significantly on $r_{\rm fiber}$:
+galaxies with fainter $r_{\rm fiber}$ have lower $z$-success rates. 
+However, the $r_{\rm fiber}$ dependence itself varies in bins of TSNR2. 
+We mark the edges of the bins in black dashed: $\log {\rm TSNR2} = 2.0, 2.5,
+3.0, 3.5, 3.85$.
+Within each of the TSNR2 bins, the $r_{\rm fiber}$ dependence of the
+$z$-success rate does not vary significantly. 
+In Figure~\ref{fig:zfail1}, we present the $z$-success rate of BGS Bright
+galaxies as a function of $r_{\rm fiber}$ for each of the 6 TSNR2 bins.
+We mark the range of TSNR2 in the bottom left of each panel. 
+The errorbars represent the Poisson uncertainties of the $z$-success rate.
 
 \begin{figure}
 \begin{center}
@@ -87,13 +97,54 @@ galaxies as a function of $r_{\rm fiber}$ and TSNR2.
         $r_{\rm fiber}$ in 6 TSNR2 bins. 
         The error bars represent the poisson uncertainties.
         In each panel, we include the best-fit analytic (Eq.~\ref{eq:zsucc})
-        approximation of the redshift success rate (dashed). 
-        The best-fit $c_0$ and $c_1$ values are derived using $\chi^2$
-        minimization. 
-        We use this analytic approximation to calculate the spectroscopic
-        completeness weights.
+        approximation of the redshift success rate (dashed) derived from
+        $\chi^2$ minimization. 
+        We use this analytic approximation to calculate the galaxy weights to
+        correct for spectroscopic incompleteness caused by failures to
+        accurately measure redshifts from observed spectra.
     }\label{fig:zfail1}
 \end{center}
 \end{figure}
+
+To correct for the effect of redshift failures, we include an additional
+correction weight for each BGS galaxy: 
+\begin{equation}
+    w_{i, {\rm ZF}} = \frac{1}{f_{z-{\rm sucess}}(r_{{\rm fiber},i}, {\rm
+    TSNR2}_i)}.
+\end{equation} 
+$f_{z-{\rm sucess}}(r_{{\rm fiber},i}, {\rm TSNR2}_i)$ is the $z$-success rate
+as a function of $r_{\rm fiber}$ and TSNR2 of the galaxy. 
+Galaxies with $f_(z-{\rm sucess} = 1.$ (100\% $z$-success) will have 
+$w_{i, {\rm ZF}} = 1$ while galaxies with $f_(z-{\rm sucess} = 0.1$ 
+(10\% $z$-success) will have $w_{i, {\rm ZF}} = 10$.
+For $f_{z-{\rm sucess}}(r_{{\rm fiber},i}, {\rm TSNR2}_i)$, we fit the
+following functional form for each TSNR2 bin: 
+\begin{equation} \label{eq:zsucc}
+    f_{z-{\rm success}}(r_{\rm fiber}) = \frac{1}{2} \bigg(1-{\rm erf}(c_0
+    (r_{\rm fiber} - c_1))\bigg).
+\end{equation}
+In Figure~\ref{fig:zfail1}, we present the best-fit 
+$f_{z-{\rm success}}(r_{\rm fiber})$ for each of the TSNR2 bins in dashed. 
+The best-fit coefficients, $c_0, c_1$, are derived from $\chi^2$ minimization.
+We list the best-fit values for each TSNR2 bin in Table~\ref{tab:zfail}. 
+
+\begin{table} 
+    \caption{Best-fit coefficients of the $z$-success rate as a function of
+    $r_{\rm fiber}$ for different TSNR2 bins.} 
+    \begin{center}
+        \begin{tabular}{lcc} \toprule
+            TSNR2 range & $c_0$ & $c_1$ \\[3pt]
+            \hline 
+            $10^{1.5}   - 10^{2}$       & 0.443 & 19.7 \\ 
+            $10^{2}     - 10^{2.5}$       & 0.668 & 21.3 \\ 
+            $10^{2.5}   - 10^{3}$       & 0.888 & 22.1 \\ 
+            $10^{3}     - 10^{3.5}$       & 0.822 & 22.4 \\ 
+            $10^{3.5}   - 10^{3.85}$    & 0.698 & 23.3 \\ 
+            $10^{3.85}  - 10^{5}$      & 0.465 & 21.8 \\ 
+            \hline            
+\end{tabular} \label{tab:zfail}
+\end{center}
+\end{table}
+
 % --- references ---
 % https://desi.lbl.gov/trac/wiki/ClusteringWG/LSScat/DA02main/current_version#clusteringfiles
