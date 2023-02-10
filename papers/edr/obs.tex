@@ -1,7 +1,44 @@
-\section{The DESI Bright Galaxy Survey Early Data Release}  \label{sec:edr}
+\section{The DESI Bright Galaxy Survey: Early Data Release}  \label{sec:edr}
+DESI began its five years of operations in May 14, 2021. 
+\todo{something about EDR}
+Before its start, DESI conducted the Survey Validation (SV) campagin to verify
+that the survey will meets its scientific and performance requirements. 
+The SV campaign was divided into two main programs: the first, SV1,
+characterized the survey's performance for different observing conditions and
+was used to optimize sample selection. 
+The second, the One-Percent Survey (or SV3), observed a dataset that can be
+used for representative clustering measurements and deliver a ‘truth’ sample
+with high completeness over an area at least 1\% of the expected main survey
+footprint.
+We refer readers to \cite{sv_paper} for details on the DESI SV programs.
+In this work, we focus on BGS galaxies observed during the One-Percent Survey.
+
+The One-Percent Survey observed on 38 nights from April 2021 to the end of 
+May 2021.
+During this time DESI observed 288 bright time exposures that cover 214 BGS
+`tiles', planned DESI pointings. 
+A set of 11 overlapping tiles so that their centers are arranged around a 0.12
+deg circle, forming a ‘rosette’ completeness pattern. 
+In total, the One-Percent Survey observed 20 rosettes covering 180 
+${\rm deg}^2$ spanning the northern galactic cap (see Figure 1 in
+\citealt{hahn2022}).  
 
 
-brief description of the DESI BGS early data release and fuji reduction 
+In total, DESI observed spectra of \todo{number} BGS Bright and \todo{number}
+BGS Faint alaxies during the One-Percent Survey. 
+All BGS spectra observed during the One-Percent Survey are reduced using the
+`Fuji' version of the DESI spectroscopic data reduction
+pipeline~\citep{guy2022}. 
+First, spectra are extracted from the spectrograph CCDs using the 
+{\em Spectro-Perfectionsim} algorithm of \cite{bolton2010}.
+Then, fiber-to-fiber variations are corrected by flat-fielding and a sky model,
+empirically derived from sky fibers, is subtracted from each spectrum.
+Afterwards, the fluxes in the spectra are calibrated using stellar model fits
+to standard stars. 
+The final processed spectra is then derived by co-adding the calibrated spectra
+across expoures of the same tile. 
 
 
-We focus on BGS galaxies at $z < 0.3$. 
+
+
+%In total, DESI amassed redshifts of 285,335 of BGS Bright galaxies and 201,532 BGS Faint galaxies in ∼5 months of operations. DESI acquired ' 4, 200 redshifts per exposure at a rate of one exposure per 20 minutes on average. Over the next five years, this will expand to an unprecedented >10 million galaxies spanning a third of the sky at two magnitudes deeper than the SDSS MGS. In Figure 18, we highlight the progress of BGS and present the absolute number of redshifts in ∆z = 0.02 bins for BGS Bright (left; blue) and Faint (right; orange) galaxies observed during the SV programs. BGS targeting successfully delivers galaxies spanning the desired redshift range, 0.0 < z < 0.6. The Bright and Faint samples have median redshifts of z = 0.2 and 0.3 respectively, which is more than double that of the SDSS MGS. We include the redshift distribution of GAMA DR4 for comparison. Even with the EDR alone, BGS exceeds the total number of spectroscopic redshift of GAMA.
