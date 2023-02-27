@@ -1,17 +1,32 @@
 \section{Results} \label{sec:results}
-We are interested in estimating the SMF of BGS galaxies from their individual
-marginalized posteriors, $p(M_* \given {\bfi X_i})$, derived using
-PROVABGS~(Section~\ref{sec:provabgs}). 
+From the posteriors of galaxy properties inferred using
+PROVABGS~(Section~\ref{sec:provabgs}), we derive the marginalized posteriors: 
+$p(M_* \given {\bfi X_i})$, the marginalized 1D posterior of $M_*$ for galaxy
+$i$.
+Using these posteriors, we can estimate the SMF of BGS galaxies using
+population inference in a hierarchical Bayesian 
+framework~\citep[\emph{e.g.}][]{hogg2010, foreman-mackey2014, baronchelli2020}.
+In other words, we infer $p(\phi\given\{{\bfi X_i}\})$, the probability
+distribution of population hyperparameters $\phi$ that describe the SMF,
+$\Phi(M_*; \phi)$, given the DESI observations, $\{{\bfi X_i}\}$. 
+For the SMF, we use a Gaussian Mixture Model~\citep[GMM;][]{} with $k=$, which
+provides a highly flexible parameterization: 
+\begin{equation}
+    \Phi(M_*; \phi) = \sum\limits_{j=1}^{k} \mathcal{N}(M_*; \phi_j).
+\end{equation} 
+$\phi_j$ represent the mean and standard deviation of the $j^{\rm th}$ Gaussian
+component of the GMM. 
 
-we're going to do population inference in a hierarchical bayesian framework and
-use a normalizing flow.
-%We can infer the population hyperparameters, μ∆θ and σ∆θ , using a hierarchical Bayesian framework (e.g. Hogg et al. 2010; Foreman-Mackey et al. 2014; Baronchelli et al. 2020).
+We take this approach over the standard approach of using point estimates of
+$M_*$ because we can robustly incorporate the uncertainties in our $M_*$
+measurements and correctly estimate population statistics. 
+\cite{malz} demonstrated in the context of inferring redshift distributions
+using photometry redshifts that using point estimates is statistically
+incorrect and can lead to biased redshift distributions. 
+\todo{more details here} 
 
-why? because it produces unbiased inference. 
-
-why do we use normalizing flows? 
-
-We follow the same approach as \cite{hahn2022} to estimate:
+To infer $p(\phi\given\{{\bfi X_i}\})$, we follow the same approach as
+\cite{hahn2022}:
 \begin{align}\label{eq:popinf}
 p(\phi \given \{{\bfi X_i}\}) 
     =&~\frac{p(\phi)~p( \{{\bfi X_i}\} \given \phi)}{p(\{{\bfi X_i}\})}\\
@@ -27,19 +42,37 @@ p(\phi \given \{{\bfi X_i}\})
     \frac{p(\theta_{i,j} \given \phi)}{p(\theta_{i,j})}.
 \end{align} 
 
-BGS provides two samples: BGS Bright and Faint. 
-Galaxies in BGS Bright are selected based on a $r < 19.5$ flux limit, while
-the ones in BGS Faint are selected based on a fiber-magnitude and color limit
-and $r < 20.0175$ flux limit. 
-Since neither of these samples are volume-limited and complete as a function
-of $M_*$, we must include the selection effect when estimating the SMF. 
-We do this by including weights derived from $z^{\rm max}$, the maximum
-redshift that galaxy $i$ could be placed and still be included in the BGS
-samples. 
+%BGS provides two samples: BGS Bright and Faint. 
+%Galaxies in BGS Bright are selected based on a $r < 19.5$ flux limit, while
+%the ones in BGS Faint are selected based on a fiber-magnitude and color limit
+%and $r < 20.0175$ flux limit. 
+Since the sample of BGS galaxies is not volume-limited and complete as a
+function of $M_*$, we must account for the selection effect and incompleteness
+when estimating the SMF. 
+To account for the selection effects of the BGS samples, we include weights
+derived from $z^{\rm max}$, the maximum redshift that galaxy $i$ could be
+placed and still be included in the BGS samples. 
 We derive $z^{\rm max}_i$ for every galaxy using by redshifting the SED
 predicted by the best-fit parameters. 
 We then derive $V^{\rm max}_i$, the comoving volume out to $z^{\rm max}_i$, and
-weights $w_i = w_{i, {\rm comp}}/V^{\rm max}_i$. 
+include a factor of $1/V^{\rm max}_i$ in the galaxy weight $w_i$. 
+
+Next, we include correction weights for spectroscopic incompleteness driven by
+fiber assignment and redshift failures. 
+Incompletenss from fiber assignment is due to the fact that DESI is not able to
+assign fibers to all galaxies included in the BGS target selection. 
+Furthermore, due to galaxy clustering there is significant variation in the
+assignment probability. 
+Meanwhile, incompleteness from redshift failure is caused by the fact that we
+do not successfully measure the redshift for every spectra and the redshift
+failure rate depends on the surface brightnesses of the galaxies and the
+signal-to-noise ratio of the spectra. 
+We describe how we derive $w_{i, {\rm FA}}$ and $w_{i, {\rm ZF}}$, the
+incompleteness correction weights for fiber assignment and redshift failures in
+Appendix~\ref{sec:spec_comp}. 
+Each BGS galaxy is assigned a weight of 
+$w_i = (w_{i, {\rm FA}}\times w_{i, {\rm ZF}})/V^{\rm max}_i$.
+
 We modify Eq.~\ref{eq:popinf} to include $w_i$: 
 \begin{align}
 p(\phi \given \{{\bfi X_i}\}) 
@@ -69,12 +102,7 @@ maximizing
 \begin{equation}
     \max_\phi~~\sum\limits_{i=1}^N w_i \log \left(\sum\limits_{j=1}^{S_i} \frac{q_\phi(\theta_{i,j})}{p(\theta_{i,j})} \right).
 \end{equation}
-We use {\sc Adam} optimizer and determine the architecture of the normalizing
-flow through experimentation.  
-
-paragraph summarizing the weights that we use: vmax, spectroscopic completeness
-weights, 
-
+using the {\sc Adam} optimizer~\citep{}.  
 
 %\approx&~\log p(\phi) - 
 %\log \prod\limits_{i=1}^N p({\bfi X_i})^{w_i} + 
@@ -84,7 +112,6 @@ weights,
 %\sum\limits_{i=1}^N w_i \log \left(\int p({\bfi X_i} \given \theta_i)~p(\theta_i \given \phi)~{\rm d}\theta_i \right) \\
 %\approx&~\log p(\phi) + 
 %\sum\limits_{i=1}^N w_i \log \left(\frac{1}{w_i} \sum\limits_{j=1}^{S_i} w_{i,j} \frac{p(\theta_{i,j} \given \phi)}{p(\theta_{i,j}} \right) \\
-
 
 %\subsection{Targeting Completeness} \label{sec:ts}
 % https://desi.lbl.gov/trac/wiki/ClusteringWG/LSScat/SV3/version2.1/fulldat
