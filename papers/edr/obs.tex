@@ -24,8 +24,6 @@ ${\rm deg}^2$ spanning the northern galactic cap (see Figure 1 in
 \citealt{hahn2022}).  
 
 
-In total, DESI observed spectra of \todo{number} BGS Bright and \todo{number}
-BGS Faint alaxies during the One-Percent Survey. 
 All BGS spectra observed during the One-Percent Survey are reduced using the
 `Fuji' version of the DESI spectroscopic data reduction
 pipeline~\citep{guy2022}. 
@@ -37,8 +35,28 @@ Afterwards, the fluxes in the spectra are calibrated using stellar model fits
 to standard stars. 
 The final processed spectra is then derived by co-adding the calibrated spectra
 across expoures of the same tile. 
+In total, DESI observed spectra of 155,022 BGS Bright and 109,418 BGS Faint 
+targets during the One-Percent Survey. 
 
+For each target spectrum, we measure its redshift using 
+{\sc Redrock}\footnote{https://redrock.readthedocs.io}, the redshift fitting
+algorithm for DESI~\citep{bailey2022}. 
+{\sc Redrock} uses $\chi^2$ minimization computed from a linear combination of
+Principal Component Analysis (PCA) basis spectral templates in three template
+classes (``stellar'',  ``galaxy'', and ``quasar'') to find the best-fit
+redshift. 
+It also provides a measure of redshift confidence, $\Delta\chi^2$, which
+corresponds to the difference between the $\chi^2$ values of the best-fit 
+{\sc Redrock} model and the next best-fit model.
 
-
+Among the One-Percent Survey BGS targets, we restrict our samples to targets 
+with reliable redshift measurements. 
+We, therefore, exclude targets observed using malfunctioning fiber positioners.
+We also restrict our sample to targets with: spectra classified as galaxy
+spectra by {\sc Redrock}, no {\sc Redrock} warning flags, $\Delta\chi^2 > 40$,
+and {\sc Redrock} redshift uncertainty $\mathtt{ZERR} < 0.0005 (1 + z)$.
+Lastly, we only include galaxies within $0 < z < 0.6$.  
+After these cuts, our One-Percent Survey BGS sample includes 143,074 BGS Bright
+galaxies and 96,771 BGS Faint galaxies.
 
 %In total, DESI amassed redshifts of 285,335 of BGS Bright galaxies and 201,532 BGS Faint galaxies in ∼5 months of operations. DESI acquired ' 4, 200 redshifts per exposure at a rate of one exposure per 20 minutes on average. Over the next five years, this will expand to an unprecedented >10 million galaxies spanning a third of the sky at two magnitudes deeper than the SDSS MGS. In Figure 18, we highlight the progress of BGS and present the absolute number of redshifts in ∆z = 0.02 bins for BGS Bright (left; blue) and Faint (right; orange) galaxies observed during the SV programs. BGS targeting successfully delivers galaxies spanning the desired redshift range, 0.0 < z < 0.6. The Bright and Faint samples have median redshifts of z = 0.2 and 0.3 respectively, which is more than double that of the SDSS MGS. We include the redshift distribution of GAMA DR4 for comparison. Even with the EDR alone, BGS exceeds the total number of spectroscopic redshift of GAMA.

@@ -9,24 +9,29 @@ framework~\citep[\emph{e.g.}][]{hogg2010, foreman-mackey2014, baronchelli2020}.
 In other words, we infer $p(\phi\given\{{\bfi X_i}\})$, the probability
 distribution of population hyperparameters $\phi$ that describe the SMF,
 $\Phi(M_*; \phi)$, given the DESI observations, $\{{\bfi X_i}\}$. 
-For the SMF, we use a Gaussian Mixture Model~\citep[GMM;][]{} with $k=$, which
-provides a highly flexible parameterization: 
+For the SMF, we use a Gaussian Mixture Model~\citep[GMM;][]{press1992, mclachlan2000}, 
+which provides a highly flexible parameterization for describing population
+distributions: 
 \begin{equation}
     \Phi(M_*; \phi) = \sum\limits_{j=1}^{k} \mathcal{N}(M_*; \phi_j).
 \end{equation} 
+$k$ represents the number of Gaussian components. 
 $\phi_j$ represent the mean and standard deviation of the $j^{\rm th}$ Gaussian
 component of the GMM. 
 
-We take this approach over the standard approach of using point estimates of
-$M_*$ because we can robustly incorporate the uncertainties in our $M_*$
-measurements and correctly estimate population statistics. 
-\cite{malz} demonstrated in the context of inferring redshift distributions
-using photometry redshifts that using point estimates is statistically
-incorrect and can lead to biased redshift distributions. 
-\todo{more details here} 
+We take this approach over the standard approach that use point estimates of
+$M_*$ because we can correctly propagate the uncertainties in our $M_*$
+measurements and more robustly estimate the $M_*$ distribution --- \emph{ie.}
+SMF. 
+\cite{malz2020} demonstrated in the context of inferring redshift
+distributions from individual photometric redshift measurements that using
+point estimates is statistically incorrect and can lead to biased redshift
+distributions. 
+We emphasize that \cite{malz2020} is an analogous analysis with a similar goal
+of measuring a 1D galaxy property distribution. 
 
-To infer $p(\phi\given\{{\bfi X_i}\})$, we follow the same approach as
-\cite{hahn2022}:
+To infer $p(\phi\given\{{\bfi X_i}\})$, we follow the same approach described
+in \cite{hahn2022}:
 \begin{align}\label{eq:popinf}
 p(\phi \given \{{\bfi X_i}\}) 
     =&~\frac{p(\phi)~p( \{{\bfi X_i}\} \given \phi)}{p(\{{\bfi X_i}\})}\\
@@ -102,7 +107,10 @@ maximizing
 \begin{equation}
     \max_\phi~~\sum\limits_{i=1}^N w_i \log \left(\sum\limits_{j=1}^{S_i} \frac{q_\phi(\theta_{i,j})}{p(\theta_{i,j})} \right).
 \end{equation}
-using the {\sc Adam} optimizer~\citep{}.  
+using the {\sc Adam} optimizer~\citep{kingma2017}.  
+We derive $\phi_{\rm MAP}$ for BGS galaxies in redshift bins of width 
+$\Delta z = 0.04$ starting from $z =0.01$. 
+This enables us to examine the redshift evolution of the SMF within BGS. 
 
 %\approx&~\log p(\phi) - 
 %\log \prod\limits_{i=1}^N p({\bfi X_i})^{w_i} + 
@@ -117,6 +125,40 @@ using the {\sc Adam} optimizer~\citep{}.
 % https://desi.lbl.gov/trac/wiki/ClusteringWG/LSScat/SV3/version2.1/fulldat
 % https://desi.lbl.gov/trac/wiki/ClusteringWG/LSScat/SV3/version2.1/fullran
 
+\begin{figure}
+\begin{center}
+    \includegraphics[width=0.6\textwidth]{figs/psmf_bgs_bright_comp.pdf} 
+    \caption{
+        The probabilistic SMF of $0.01 < z < 0.05$ BGS galaxies in the
+        One-Percent Survey. 
+    }\label{fig:psmf}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+    \includegraphics[width=0.6\textwidth]{figs/psmf_bgs_bright_zevo.pdf} 
+    \caption{
+        The probabilistic SMF of $0.01 < z < 0.05$ BGS galaxies in the
+        One-Percent Survey. 
+    }\label{fig:psmfz}
+\end{center}
+\end{figure}
 
 \subsection{The Probabilistic Stellar Mass Function} \label{sec:psmf}
+We present the probabilistic SMF of $0.01 < z < 0.05$ BGS galaxies in the
+One-Percent Survey in Figure~\ref{fig:psmf} (blue). 
+We represent the uncertainties on the SMF from sample variance in the shaded
+region.
+The uncertainties are estimated using a standard jackknife technique, which we
+describe in Appendix~\ref{sec:uncert} (Eq.~\ref{eq:jack}) and provide
+conservative uncertainty estimates~\citep{norberg2009}. 
 
+We also include SMF measurements from previous spectroscopic surveys
+SDSS~\citep{moustakas2013} (black circle) and GAMA~\citep{driver2022} (black
+triangle).
+Since \cite{moustakas2013} and \cite{driver2022} derive $M_*$ using different
+SED models we include a $M_*$ offset based on overlapping galaxies. 
+Overall, we find good agreement with previous SMF measurements. 
+
+In Figure~\ref{fig:psmfz}, we present the redshift evolution of the pSMF 
