@@ -127,38 +127,54 @@ This enables us to examine the redshift evolution of the SMF within BGS.
 
 \begin{figure}
 \begin{center}
-    \includegraphics[width=0.6\textwidth]{figs/psmf_bgs_bright_comp.pdf} 
+    \includegraphics[width=\textwidth]{figs/psmf_bgs_any_comp.pdf} 
     \caption{
-        The probabilistic SMF of $0.01 < z < 0.05$ BGS galaxies in the
-        One-Percent Survey. 
+        The probabilistic SMF (pSMF) of BGS galaxies in the One-Percent Survey
+        at $0.01 < z < 0.05$ (black line). 
+        We represent uncertainties on the pSMF, estimated using a standard
+        jackknife technique (Appendix~\ref{sec:jack}), in the shaded regions.
+        The solid line represents the pSMF above the completeness limit 
+        $M_* > M_{\rm lim} = 10^{8.975}M_\odot$ (Appendix~\ref{sec:mscomp}).
+        In the left panel, we include SMF measurements from previous
+        spectroscopic surveys for comparison: SDSS~\citep{moustakas2013,
+        bernardi2017} and GAMA~\citep{driver2022}. 
+        In the right panel, we present the pSMFs of BGS Bright (blue) and
+        Faint (orange) galaxies. 
+        Overall, the SMF of BGS are in good agreement with previous SMF
+        measurements in the literature.  
     }\label{fig:psmf}
 \end{center}
 \end{figure}
 
 \begin{figure}
 \begin{center}
-    \includegraphics[width=0.6\textwidth]{figs/psmf_bgs_bright_zevo.pdf} 
+    \includegraphics[width=0.6\textwidth]{figs/psmf_bgs_any_zevo.pdf} 
     \caption{
-        The probabilistic SMF of $0.01 < z < 0.05$ BGS galaxies in the
-        One-Percent Survey. 
+        The redshift evoution of the BGS pSMF over $0.01 < z < 0.17$. 
+        The shaded regions represent the uncertainties on the pSMF, estimated
+        using a standard jackknife technique.
+        The solid line represents the pSMF above the completeness limit 
+        $M_* > M_{\rm lim}$.
+        {\color{red} takeaway message here}.
     }\label{fig:psmfz}
 \end{center}
 \end{figure}
 
 \subsection{The Probabilistic Stellar Mass Function} \label{sec:psmf}
-We present the probabilistic SMF of $0.01 < z < 0.05$ BGS galaxies in the
+We present the probabilistic SMF (pSMF) of $0.01 < z < 0.05$ BGS galaxies in the
 One-Percent Survey in Figure~\ref{fig:psmf} (blue). 
 We represent the uncertainties on the SMF from sample variance in the shaded
 region.
 The uncertainties are estimated using a standard jackknife technique, which we
 describe in Appendix~\ref{sec:uncert} (Eq.~\ref{eq:jack}) and provide
-conservative uncertainty estimates~\citep{norberg2009}. 
+conservative estimates~\citep{norberg2009}. 
+In the right panel, we present the pSMFs of galaxies in the BGS Bright and
+Faint galaxies.  
 
-We also include SMF measurements from previous spectroscopic surveys
-SDSS~\citep{moustakas2013} (black circle) and GAMA~\citep{driver2022} (black
-triangle).
-Since \cite{moustakas2013} and \cite{driver2022} derive $M_*$ using different
-SED models we include a $M_*$ offset based on overlapping galaxies. 
+In the left panel, we include SMF measurements from previous spectroscopic 
+surveys SDSS~\citep{moustakas2013, bernard2017} (black circle and square) and
+GAMA~\citep{driver2022} (black triangle) for comparison.
+\todo{mention the correction in driver}
 Overall, we find good agreement with previous SMF measurements. 
 
 In Figure~\ref{fig:psmfz}, we present the redshift evolution of the pSMF 
