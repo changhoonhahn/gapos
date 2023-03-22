@@ -1,26 +1,120 @@
 \section{Introduction} \label{sec:intro} 
-brief review of scaling relations and the importance of population statistics  
+% brief review of scaling relations and the importance of population statistics
+% list of all the population statistics paper from SDSS and GAMA. 
+With large galaxy surveys, such as the Sloan Digital Sky
+Survey~\citep[SDSS;][]{york2000}, Galaxy and Mass Assembly
+survey~\citep[GAMA;][]{driver2011}, and 
+PRIsm MUlti-object Survey~\citep[PRIMUS;][]{coil2011}, 
+the galaxy population can now largely be characterize with a small number of
+scaling relations and population 
+statistics~\citep[see][for a review]{blanton2009}.
+For instance, the stellar mass function (SMF) precisely characterizes the
+overall stellar mass, $M_*$, distribution of galaxies and its
+evolution~\citep{li2009, marchesini2009, moustakas2013, muzzin2013, leja2019a,
+driver2022}.
 
-list of all the population statistics paper from SDSS and GAMA. 
+%Marchesini et al. 2009; Muzzin et al. 2013; Ilbert et al. 2013; Moustakas et al. 2013; Tomczak et al. 2014; Grazian et al. 2015; Song et al. 2016; Davidzon et al. 2017; Wright et al. 2018).
 
-introduce DESI and BGS and talk about an opportunity to improve all these
-population population statistics 
 
-{\color{red} why do we care about smfs} 
-importance of pop statistics for galaxy formation models. 
-UniverseMachine,
+Also, the relationship between the stellar masses and star formation rates of
+galaxies reveal a bimodality in the galaxy population with star-forming
+galaxies forming the ``star formation sequence''~\citep{noeske2007, daddi2007,
+salim2007}.
 
-informing semianalytic models and hydrodyanmical simulations
 
-ML acceleration of these models will enable to fitting to observations so it's
-imperative that we have the most precise galaxy population statistics. 
+or quiescent
+fraction~\citep{kauffmann2003a, blanton2003, baldry2006, taylor2009}, and their
+evolution are now well understood. 
+Many global scaling relations of galaxy propreties such as the mass-metallicity
+relation~\citep{tremonti2004} or
 
-{\color{red} why provabgs} 
-state of the art SED modeling 
-fully consistent way of examining M*, sfr, metallicity, and dust content of
-galaxies. 
+also been firmly established. 
 
-fully probabilistic for rigorous pSMF measurements. 
+More precise and accurate measurements of the statistical distributions of the
+properties for galaxy populations at different cosmic epochs have the potential
+to shed further light on galaxy formation and evolution. 
+
+For one, they have the potential to reveal new trends among galaxies undetected
+by previous observations and open new discovery space.
+They can also be used to test galaxy formation models spanning 
+empirical models~\citep[\emph{e.g.} {\sc UniverseMachine};][]{behroozi2019}, 
+semi-analytic models~\citep[\emph{e.g.}][]{benson2012, henriques2015,
+somerville2015}, and 
+hydrodyanmical simulations~\citep[see][for a review]{somerville2015a}. 
+Empirical models, for example, have been used to measure the timescale of 
+timescale of star formation quenching~\citep{wetzel2013, hahn2017, tinker2017}
+or the dust content of galaxies~\citep{hahn2021}. 
+
+Furthermore, observations have already been used to infer parameters that
+dictate the physical processes in semi-analytic
+models~\citep[\emph{e.g.}][]{henriques2009, lu2014, henriques2015} 
+Although full parameter exploration is currently computationally prohibitively
+for hydrodynamical simulations, they have been extensively compared to
+observations: \emph{e.g.}~\cite{genel2014, dave2017a, trayford2017, dickey2021,
+donnari2021}.
+Soon machine learning techniques for accelerating and emulating simulations
+will enable us to go beyond such comparisons and broadly explore parameter
+space and galaxy formation
+models~\citep[\emph{e.g.}][]{villaescusa-navarro2021}.
+While many different approaches are available for expanding our understanding
+of galaxies, they all require statistically powerful galaxy samples with
+well controlled systematics and well understood selection functions. 
+
+One survey that will provide galaxy samples with unprecedented statistical power
+is the Dark Energy Spectrscopic
+Instrument~\citep[DESI;][]{desicollaboration2016, desicollaboration2016a}. 
+Over its 5 year operation, DESI will observe galaxy spectra using the 4-meter
+Mayll telescope at Kitt Peak National Observatory with a focal plane filled
+with 5000 robotically-actuated fibers that direct the light to ten optical
+spectrographs.
+It will observe $\sim$40 million galaxy spectra over $360 < \lambda < 980$ nm
+with spectral resolution of $2000 < \lambda/\Delta \lambda < 5500$ over 
+${\sim}14,000~{\rm deg}^2$, a third of the sky.
+In addition, DESI galaxies will also have photometry from the Legacy Imaging
+Surveys Data Release 9~\citep[LS;][]{dey2019}. 
+LS is a combination of three public projects (Dark Energy Camera Legacy Survey,
+Beijing-Arizona Sky Survey, and Mayall $z$-band Legacy Survey) that jointly
+imaged the DESI footprint in three optical bands ($g$, $r$, and $z$). 
+DESI began its main observing in May 14, 2021. 
+
+As part of the survey, DESI is conducting the Bright Galaxy
+Survey~\citep[BGS;][]{hahn2022}.
+BGS spans the same 14,000${\rm deg}^2$ footprint and will include low redshift
+$z< 0.6$ galaxies that can be observed during bright time, when the night sky
+is ${\sim}2.5\times$ brighter than nominal dark conditions,
+BGS will provide two galaxy samples: the BGS Bright sample, a $r < 19.5$
+magnitude-limited sample of ${\sim}10$ million galaxies, and the BGS Faint
+sample, a fainter $19.5 < r < 20.175$ sample of ${\sim 5}$ million galaxies
+selected using a surface brightness and color. 
+The selection and completeness of the BGS samples are characterized in detail
+in \cite{hahn2023}. 
+Compared to the seminal SDSS main galaxy survey, BGS will provide a galaxy
+sample two magnitudes deeper, over twice the sky, and double the median
+redshift $z{\sim}0.2$. 
+It will observe a broader range of galaxies than previous surveys  and provide
+an opportunity to measure galaxy population statistics with unprecendented
+precision.
+
+BGS will also be accompanied by a value-added catalog: the Probabilistic
+Value-Added BGS~\citep[PROVABGS;][]{hahn2022, kwon2022}.  
+For every BGS galaxy, PROVABGS will provide physical properties such as stellar
+mass ($M_*$), average star formation rate ($\overline{\rm SFR}$), stellar
+metallicity $Z$, stellar age $t_{\rm age}$, and dust content. 
+These galaxy properties will be inferred using state-of-the-art Spectral Energy
+Distribution (SED) modeling of both DESI photometry and spectroscopy in a full
+Bayesian inference framework. 
+Ultimately, PROVABGS will provide consistently measured galaxy properties that
+will enable analyses to fully take advantage of the statistical power of BGS
+with new techniques and approaches. 
+
+A key application for PROVABGS will be measuring population statistics in a 
+statistically correct  
+% a statistically rigorous probabilistic graphical model of redshift-dependent photometry, which correctly propagates the redshift uncertainty information
+
+emphasize the Bayesian posteriors here 
+
+In this work, we present the first of such population statistic measurement for
+BGS: the probabilistic stellar mass function (pSMF). 
 
 {\color{red} why this work?} 
 In this work, we present the pSMF for galaxies in the Bright Galaxy Survey
@@ -29,3 +123,13 @@ conducted before the main survey operations.
 
 Furthermore, in this work we present the statistical methodology as well as the
 methodology for accounting for observational incompleteness. 
+
+We begin in Section~\ref{sec:edr} with an overview of the BGS galaxies observed
+during the DESI One-Percent Survey. 
+Then, in Section~\ref{sec:provabgs}, we briefly summarize the PROVABGS SED
+modeling framework used to infer the physical properties of the BGS galaxies.
+Afterwards, we present the pSMF inferred from the BGS observations in
+Section~\ref{sec:results}. 
+We summarize and discuss our results in Section~\cite{sec:summary}.
+Throughout the 
+We use XXXXXX cosmology.

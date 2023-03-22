@@ -10,7 +10,7 @@ In other words, we infer $p(\phi\given\{{\bfi X_i}\})$, the probability
 distribution of population hyperparameters $\phi$ that describe the SMF,
 $\Phi(M_*; \phi)$, given the DESI observations, $\{{\bfi X_i}\}$. 
 For the SMF, we use a Gaussian Mixture Model~\citep[GMM;][]{press1992, mclachlan2000}, 
-which provides a highly flexible parameterization for describing population
+which provides a highly flexible non-parametric description of the
 distributions: 
 \begin{equation}
     \Phi(M_*; \phi) = \sum\limits_{j=1}^{k} \mathcal{N}(M_*; \phi_j).
@@ -157,7 +157,7 @@ This enables us to examine the redshift evolution of the SMF within BGS.
         The solid lines represent the pSMF above the completeness limit 
         $M_* > M_{\rm lim}$ while the dashed lines represent the pSMF below
         the limit.
-        There is no significant redshift evolution of the pSMF given their
+        There is no significant redshift evolution of the pSMF given the
         statistical uncertainties. 
         The main BGS survey will observe $>100\times$ more galaxies than the
         One-Precent Survey. 
@@ -244,26 +244,10 @@ with unprecedented precision.
         We represent the uncertainties for the pSMF in the shaded regions and 
         the pSMFs above/below the $M_*$ completeness limits in solid/dashed
         lines.
-        At $M_* < 10^{11}M_\odot$ we find an increase in the quiescent galaxy
-        population with no significant evolution of the star-forming population.
+        The pSMFs suggest a decline in massive, $M_* > 10^{11}M_\odot$ 
+        star-forming galaxies and an increase in the quiescent galaxy population
+        at $M_* < 10^{11}M_\odot$ at lower redshifts.
     }\label{fig:sfqsmf}
-\end{center}
-\end{figure}
-
-
-\begin{figure}
-\begin{center}
-    \includegraphics[width=0.45\textwidth]{figs/qf_bgs_bright.pdf} 
-    \caption{
-        The quiescent fraction of BGS Bright galaxies over $0.01 < z < 0.17$ in
-        bins of $\Delta z =0.04$.
-        We present the uncertainties in the shaded region and only include  
-        the quiescent fraction above the $M_*$ completeness limit. 
-        The quiescent fractions increase with $M_*$ to $\sim$1 at
-        $M_*\sim10^{11.5}M_\odot$. 
-        The quiescent fractions also suggest an increase in the quiescent
-        population with lower redshift at low $M_*$.
-    }\label{fig:qf}
 \end{center}
 \end{figure}
 
@@ -299,6 +283,21 @@ below $M_* < 10^{11}M_\odot$.
 Meanwhile, the pSMF of star-forming galaxies shows no significant evolution
 over $0.01 < z < 0.17$. 
 
+\begin{figure}
+\begin{center}
+    \includegraphics[width=0.45\textwidth]{figs/qf_bgs_bright.pdf} 
+    \caption{
+        The quiescent fraction of BGS Bright galaxies over $0.01 < z < 0.17$ in
+        bins of $\Delta z =0.04$.
+        We present the uncertainties in the shaded region and only include  
+        the quiescent fraction above the $M_*$ completeness limit. 
+        The quiescent fractions increase with $M_*$ at all redshifts. 
+        Furthermore, the quiescent fractions suggest an overall increase in the
+        quiescent population with lower redshift.
+    }\label{fig:qf}
+\end{center}
+\end{figure}
+
 Next, we present the fraction of quiescent galaxies as a function of $M_*$ over
 $0.01 < z < 0.17$ in Figure~\ref{fig:qf}.
 The quiescent fraction is derived by taking the ratio of the pSMFs of quiescent
@@ -308,10 +307,10 @@ The shaded region represent the uncertainties derived from propagating the
 jackknife uncertainties of the pSMFs. 
 We only include the quiescent fraction above the $M_*$ completeness limit: $M_*
 > M_{\rm lim}$. 
-Overall, the quiescent fraction increases with $M_*$ to 1 at
+At each redshift bin, the quiescent fraction increases with $M_*$ to $\sim$1 at
 $M_*\sim10^{11.5}M_\odot$. 
 The quiescent fraction also suggests an increase in the quiescent population
-with redshift at low $M_*$. 
+with redshift. 
 However, there is no clear trend given the statistical uncertainties.
 Upcoming observations from the main operations of the BGS will increase the
 number of BGS galaxies by >100$\times$ and dramatically improve the precision
