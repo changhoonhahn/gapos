@@ -1,34 +1,44 @@
 \section{Results} \label{sec:results}
 From the posteriors of galaxy properties inferred using
 PROVABGS~(Section~\ref{sec:provabgs}), we derive the marginalized posteriors: 
-$p(M_* \given {\bfi X_i})$, the marginalized 1D posterior of $M_*$ for galaxy
-$i$.
-Using these posteriors, we can estimate the SMF of BGS galaxies using
-population inference in a hierarchical Bayesian 
+$p(M_* \given {\bfi X_i})$, the marginalized 1D posterior of $M_*$ from
+observed spectrophotometry ${\bfi X_i}$ of galaxy $i$.
+Using these posteriors, we can estimate the probabilistic SMF (pSMF) of BGS
+galaxies using population inference in a hierarchical Bayesian 
 framework~\citep[\emph{e.g.}][]{hogg2010, foreman-mackey2014, baronchelli2020}.
-In other words, we infer $p(\phi\given\{{\bfi X_i}\})$, the probability
-distribution of population hyperparameters $\phi$ that describe the SMF,
-$\Phi(M_*; \phi)$, given the DESI observations, $\{{\bfi X_i}\}$. 
-For the SMF, we use a Gaussian Mixture Model~\citep[GMM;][]{press1992, mclachlan2000}, 
-which provides a highly flexible non-parametric description of the
-distributions: 
+In other words, we can infer $p(\phi\given\{{\bfi X_i}\})$, the probability
+distribution of $\phi$ given the full DESI BGS observations, $\{{\bfi X_i}\}$. 
+$\phi$ is the set of population hyperparameters that describe the pSMF,
+$\Phi(M_*; \phi)$.
+We again emphasize that this approach is statistically rigorous and correctly
+propagates the uncertainties in our $M_*$ measurements to the pSMF. 
+
+%We take this approach over the standard approach that use point estimates of
+%$M_*$ because we can correctly propagate the uncertainties in our $M_*$
+%measurements and more robustly estimate the $M_*$ distribution --- \emph{ie.}
+%SMF. 
+%\cite{malz2020} demonstrated in the context of inferring redshift
+%distributions from individual photometric redshift measurements that using
+%point estimates is statistically incorrect and can lead to biased redshift
+%distributions. 
+%We emphasize that \cite{malz2020} is an analogous analysis with a similar goal
+%of measuring a 1D galaxy property distribution. 
+
+In this work, we estimate the pSMF using a Gaussian Mixture
+Model~\citep[GMM;][]{press1992, mclachlan2000}, which provides a highly flexible
+description of the $M_*$ distribution: 
 \begin{equation}
     \Phi(M_*; \phi) = \sum\limits_{j=1}^{k} \mathcal{N}(M_*; \phi_j).
 \end{equation} 
 $k$ represents the number of Gaussian components. 
 $\phi_j$ represent the mean and standard deviation of the $j^{\rm th}$ Gaussian
 component of the GMM. 
+Previous works have used parametric functions (\emph{e.g.} Schechter function)
+to describe the pSMF~\citep{leja2019a}. 
+We opt for GMMs in order to produce a non-parametric measuerment of the pSMF.
+In subsequent work, Speranza~\etal~(in prep.), we will present the BGS pSMF
+measured using a parametric model with continuous redshift evolution.  
 
-We take this approach over the standard approach that use point estimates of
-$M_*$ because we can correctly propagate the uncertainties in our $M_*$
-measurements and more robustly estimate the $M_*$ distribution --- \emph{ie.}
-SMF. 
-\cite{malz2020} demonstrated in the context of inferring redshift
-distributions from individual photometric redshift measurements that using
-point estimates is statistically incorrect and can lead to biased redshift
-distributions. 
-We emphasize that \cite{malz2020} is an analogous analysis with a similar goal
-of measuring a 1D galaxy property distribution. 
 
 To infer $p(\phi\given\{{\bfi X_i}\})$, we follow the same approach described
 in \cite{hahn2022}:
@@ -40,7 +50,7 @@ p(\phi \given \{{\bfi X_i}\})
     =&~\frac{p(\phi)}{p(\{{\bfi X_i}\})}\prod\limits_{i=1}^N\int \frac{p(\theta_i \given {\bfi X_i})~p({\bfi X_i})}{p(\theta_i)}~p(\theta_i \given \phi)~{\rm d}\theta_i\\
     =&~p(\phi)\prod\limits_{i=1}^N\int \frac{p(\theta_i \given {\bfi X_i})~p(\theta_i \given \phi)}{p(\theta_i)}~{\rm d}\theta_i. 
 \intertext{
-    We estimate the integral using $S_i$ Monte Carlo samples from the
+    We can estimate the integral using $S_i$ Monte Carlo samples from the
     individual posteriors $p(\theta_i \given {\bfi X_i})$: 
 }
     \approx&~p(\phi)\prod\limits_{i=1}^N\frac{1}{S_i}\sum\limits_{j=1}^{S_i}
@@ -53,10 +63,10 @@ p(\phi \given \{{\bfi X_i}\})
 %and $r < 20.0175$ flux limit. 
 Since the sample of BGS galaxies is not volume-limited and complete as a
 function of $M_*$, we must account for the selection effect and incompleteness
-when estimating the SMF. 
+when estimating the pSMF. 
 To account for the selection effects of the BGS samples, we include weights
-derived from $z^{\rm max}$, the maximum redshift that galaxy $i$ could be
-placed and still be included in the BGS samples. 
+derived from $z^{\rm max}_i$, the maximum redshift that galaxy $i$ could have
+and still be included in the BGS samples. 
 We derive $z^{\rm max}_i$ for every galaxy using by redshifting the SED
 predicted by the best-fit parameters. 
 We then derive $V^{\rm max}_i$, the comoving volume out to $z^{\rm max}_i$, and
@@ -66,19 +76,19 @@ Next, we include correction weights for spectroscopic incompleteness driven by
 fiber assignment and redshift failures. 
 Incompletenss from fiber assignment is due to the fact that DESI is not able to
 assign fibers to all galaxies included in the BGS target selection. 
-Furthermore, due to galaxy clustering there is significant variation in the
-assignment probability. 
+Furthermore, due to the clustering of galaxies there is significant variation
+in the assignment probability. 
 Meanwhile, incompleteness from redshift failure is caused by the fact that we
 do not successfully measure the redshift for every spectra and the redshift
-failure rate depends on the surface brightnesses of the galaxies and the
-signal-to-noise ratio of the spectra. 
-We describe how we derive $w_{i, {\rm FA}}$ and $w_{i, {\rm ZF}}$, the
-incompleteness correction weights for fiber assignment and redshift failures in
+failure rate depends significantly on the surface brightnesses of the galaxies
+and the signal-to-noise ratio of the spectra. 
+We describe how we derive  the incompleteness correction weights for fiber
+assignment and redshift failures, $w_{i, {\rm FA}}$ and $w_{i, {\rm ZF}}$, in
 Appendix~\ref{sec:spec_comp}. 
 Each BGS galaxy is assigned a weight of 
 $w_i = (w_{i, {\rm FA}}\times w_{i, {\rm ZF}})/V^{\rm max}_i$.
 
-We modify Eq.~\ref{eq:popinf} to include $w_i$: 
+We modify Eq.~\ref{eq:popinf} to include galaxy weights, $w_i$: 
 \begin{align}
 p(\phi \given \{{\bfi X_i}\}) 
     \approx&~\frac{p(\phi)}{\prod\limits_{i=1}^N p({\bfi X_i})^{w_i}} 
@@ -109,8 +119,8 @@ maximizing
 \end{equation}
 using the {\sc Adam} optimizer~\citep{kingma2017}.  
 We derive $\phi_{\rm MAP}$ for BGS galaxies in redshift bins of width 
-$\Delta z = 0.04$ starting from $z =0.01$. 
-This enables us to examine the redshift evolution of the SMF within BGS. 
+$\Delta z = 0.04$ starting from $z =0.01$ in order to examine the redshift
+evolution of the SMF within BGS. 
 
 %\approx&~\log p(\phi) - 
 %\log \prod\limits_{i=1}^N p({\bfi X_i})^{w_i} + 
@@ -170,10 +180,10 @@ We present the probabilistic SMF (pSMF) of $0.01 < z < 0.05$ BGS galaxies in the
 One-Percent Survey in Figure~\ref{fig:psmf} (black line). 
 The shaded regions represent the uncertainties of the pSMF from sample variance,
 which we derive using a standard jackknife technique
-(Appendix~\ref{sec:uncert}) and are conservative estimates~\citep{norberg2009}. 
+(Appendix~\ref{sec:jack}) and are conservative estimates~\citep{norberg2009}. 
 In the left panel, we also present the pSMFs of the BGS Bright (blue) and Faint
 (orange) galaxies.  
-BGS Bright galaxies are selected primarily using a $r > 19.5$ magnitude limit. 
+BGS Bright galaxies are selected using a $r > 19.5$ magnitude limit. 
 As a result, the BGS Bright sample is $M_*$ complete above $M_{\rm lim} >
 10^{8.975}M_\odot$. 
 We derive $M_{\rm lim}$ in Appendix~\ref{sec:mscomp} and mark the pSMF above
@@ -183,11 +193,23 @@ color selection.
 It includes fainter galaxies, $19.5 < r < 20.175$, with overall lower $M_*$
 than the BGS Bright sample. 
 
+We also include the SMF estimated using the standard approach (black dotted). 
+This SMF is derived using the best-fit $M_*$ point estimates with the same
+galaxy weights, $w_i$. 
+At intermediate $M_*$ range, $10^9 < M_* < 10^{11}M_\odot$, we find good
+agrement with the pSMF. 
+However, the standard approach significantly underestimates the SMF outside
+this $M_*$ range. 
+These discrepancies is due to the fact that point estimates of $M_*$ ignore the
+uncertainties which contribute significantly at the most and least massive ends
+of the SMF.
+The discpreancies are present in all other redshift bins and underscore the
+importance of correctly propagating the $M_*$ uncertainties. 
+
 In the right panel, we compare the BGS pSMF to SMF measurements from previous 
 spectroscopic surveys: SDSS~\citep{moustakas2013, bernardi2017} (black circle
 and square) and GAMA~\citep{driver2022} (black triangle).
-For the \cite{driver2022} SMF, we include a 0.0807 dex correction that the
-authors recommend to re-normalize the SMF and correction to $z=0$. 
+%For the \cite{driver2022} SMF, we include a 0.0807 dex correction that the authors recommend to re-normalize the SMF and correction to $z=0$. 
 We note that there is significant variance in SMF measurements in the
 literature, especially at the high $M_*$ end. 
 This is partly due to the different modeling methodologies used to derive
@@ -195,13 +217,13 @@ $M_*$, which can contribute >0.1 dex discrepancies~\citep{pacifici2023}.
 Furthermore, there are also discrepancies due to photometric corrections
 applied to SDSS photometry, assumptions on the stellar populations, and
 dust~\citep{bernardi2017}.
-We reserve a more detailed comparison of BGS $M_*$ measurements using different
-methods for future work. 
+In subsequent work, we will present a detailed comparison of BGS $M_*$
+measurements using different methods. 
 Overall, we find good agreement with previous SMF measurements, especially in
 the intermediate $M_*$ range where we precisely infer the pSMF.  
 
-In Figure~\ref{fig:psmfz}, we present the redshift evolution of the pSMF from
-$z\sim 0.15$ to 0.03 in redshift bins of $\Delta z = 0.04$. 
+In Figure~\ref{fig:psmfz}, we present the redshift evolution of the pSMF over 
+$0.01 < z < 0.17$ in redshift bins of $\Delta z = 0.04$. 
 The shaded region represent the jackknife uncertainties for the pSMF.
 The solid line represents the pSMF above $M_{\rm lim}$ while the dashed lines
 represent the pSMF below the limit. 
@@ -212,9 +234,8 @@ dependence given their uncertainties.
 We note that the large uncertainties for the $0.01 < z < 0.05$ pSMF is driven
 by large-scale structure at RA $\sim 195$ deg, Dec $\sim 28$ deg, and 
 $z\sim0.244$. 
-However, we emphasize that the main BGS survey will observe $>100\times$ the
-number of BGS galaxies in the One-Percent Survey and enable pSMF measurements
-with unprecedented precision. 
+The main BGS survey will observe $>100\times$ more BGS galaxies than the
+One-Percent Survey and enable pSMF measurements with unprecedented precision. 
 
 \begin{figure}
 \begin{center}
@@ -252,27 +273,27 @@ with unprecedented precision.
 \end{figure}
 
 \subsection{Star-Forming and Quiescent Galaxies in the BGS} \label{sec:sfq}
-In addition to the pSMF of the full galaxy population, PROVABGS also infers
-$\overline{\rm SFR}$, average SFR over the last 1 Gyr, so we can examine the
-pSMF of the star-forming and quiescent subpopulations. 
-In Figure~\ref{fig:sfq}, we present the distribution of $M_*$ versus specific
-SFR, ${\rm sSFR} = \overline{\rm SFR}/M_*$, for BGS Bright (blue) and Faint
-(orange) galaxies at $z < 0.2$. 
-BGS galaxies form a bimodal $M_*-{\rm sSFR}$ distribution, with star-forming
-galaxies lying on the so-called ``star-forming
-sequence''~\citep[SFS;][]{noeske2007, daddi2007, salim2007, speagle2014,
-hahn2019} and quiescent galaxies lying $\gtrsim$1 dex below the sequence. 
-BGS Faint galaxies have lower $M_*$ than BGS Bright galaxies and are primarily
-star-forming galaxies. 
-This is consistent with the fact that the $(z - W1)-1.2(g-r)+1.2$ color used to
-select BGS Faint galaxies is a proxy for H$\alpha$ and H$\beta$ emission lines.  
+In addition to the pSMF of the full galaxy population, we can also examine the
+pSMF of the star-forming and quiescent subpopulations using 
+$\overline{\rm SFR}$, average SFR over the last 1 Gyr, inferred using PROVABGS. 
+In Figure~\ref{fig:sfq}, we present the distribution of $M_*$ versus average
+specific SFR, $\overline{\rm sSFR} = \overline{\rm SFR}/M_*$, for BGS Bright
+(blue) and Faint (orange) galaxies at $z < 0.2$. 
+The $M_*-{\rm sSFR}$ distribution of the BGS galaxies reveal a clear
+bimodality with star-forming galaxies lying on the SFS and quiescent galaxies
+lying $\gtrsim$1 dex below the sequence. 
+Figure~\ref{fig:sfq} also confirms that BGS Faint galaxies have overall lower
+$M_*$ than BGS Bright galaxies and are primarily star-forming galaxies. 
+This is due to the fact that the $(z - W1)-1.2(g-r)+1.2$ color used to select
+BGS Faint galaxies is a proxy for H$\alpha$ and H$\beta$ emission lines.  
+
 To further examine the star-forming and quiescent galaxy populations, we
 classify BGS Bright galaxies as star-forming or quiescent using a 
-${\rm sSFR} = 10^{-11.2}\,{\rm yr}^{-1}$ cut. 
+$\overline{\rm sSFR} = 10^{-11.2}\,{\rm yr}^{-1}$ cut. 
 We determine this cut empirically based roughly on the sSFR of the ``green
 valley'' between the SFS and the quiescent mode. 
-We opt for a sSFR cut rather than more sophisticated methods in the
-literature~\citep[\emph{e.g.}][]{hahn2019, donnari2019} for simplicity. 
+We opt for a $\overline{\rm sSFR}$ cut rather than more sophisticated methods
+in the literature~\citep[\emph{e.g.}][]{hahn2019, donnari2019} for simplicity. 
 In Figure~\ref{fig:sfqsmf}, we present the pSMF of star-forming and quiescent
 BGS Bright galaxies at $0.01 < z < 0.17$ in bins of $\Delta z = 0.04$.
 The shaded regions represent the jackknife uncertainties for the pSMF. 
@@ -280,8 +301,8 @@ The solid lines represent the pSMFs above the completeness limit while the
 dashed lines represent the pSMFs below the limit. 
 The pSMF of quiescent galaxies suggest an increase in the number of galaxies
 below $M_* < 10^{11}M_\odot$.
-Meanwhile, the pSMF of star-forming galaxies shows no significant evolution
-over $0.01 < z < 0.17$. 
+Meanwhile, the pSMF of star-forming galaxies shows a possible decline at the
+massive end over $0.01 < z < 0.17$. 
 
 \begin{figure}
 \begin{center}
@@ -298,20 +319,19 @@ over $0.01 < z < 0.17$.
 \end{center}
 \end{figure}
 
-Next, we present the fraction of quiescent galaxies as a function of $M_*$ over
-$0.01 < z < 0.17$ in Figure~\ref{fig:qf}.
+Next, we present the fraction of quiescent galaxies in BGS Bright as a function
+of $M_*$ over $0.01 < z < 0.17$ in Figure~\ref{fig:qf}.
 The quiescent fraction is derived by taking the ratio of the pSMFs of quiescent
-galaxies over all galaxies in BGS Bright and measured for each $\Delta z =0.04$
-bin.
+galaxies over all galaxies and measured for each $\Delta z =0.04$ bin.
 The shaded region represent the uncertainties derived from propagating the
 jackknife uncertainties of the pSMFs. 
-We only include the quiescent fraction above the $M_*$ completeness limit: $M_*
-> M_{\rm lim}$. 
+We focus on the quiescent fraction of BGS Bright galaxies above the $M_*$
+completeness limit: $M_* > M_{\rm lim}$. 
 At each redshift bin, the quiescent fraction increases with $M_*$ to $\sim$1 at
 $M_*\sim10^{11.5}M_\odot$. 
 The quiescent fraction also suggests an increase in the quiescent population
-with redshift. 
-However, there is no clear trend given the statistical uncertainties.
-Upcoming observations from the main operations of the BGS will increase the
-number of BGS galaxies by >100$\times$ and dramatically improve the precision
-of quiescent fraction measurements. 
+with redshift; although a clear trend is obfuscated by significant statistical
+uncertainties.
+Upcoming observations from the DESI main survey will increase the number of BGS
+galaxies by >100$\times$ and dramatically improve the precision of quiescent
+fraction measurements. 

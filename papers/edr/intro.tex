@@ -5,31 +5,31 @@ With large galaxy surveys, such as the Sloan Digital Sky
 Survey~\citep[SDSS;][]{york2000}, Galaxy and Mass Assembly
 survey~\citep[GAMA;][]{driver2011}, and 
 PRIsm MUlti-object Survey~\citep[PRIMUS;][]{coil2011}, 
+% maybe break this up into two pieces  
 the galaxy population can now largely be characterize with a small number of
 scaling relations and population 
 statistics~\citep[see][for a review]{blanton2009}.
-For instance, the stellar mass function (SMF) precisely characterizes the
+The stellar mass function (SMF), for instance, precisely characterizes the
 overall stellar mass, $M_*$, distribution of galaxies and its
-evolution~\citep{li2009, marchesini2009, moustakas2013, muzzin2013, leja2019a,
-driver2022}.
+evolution across cosmic history~\citep{li2009, marchesini2009, moustakas2013,
+muzzin2013, leja2019a, driver2022}.
 
 %Marchesini et al. 2009; Muzzin et al. 2013; Ilbert et al. 2013; Moustakas et al. 2013; Tomczak et al. 2014; Grazian et al. 2015; Song et al. 2016; Davidzon et al. 2017; Wright et al. 2018).
 
-
-Also, the relationship between the stellar masses and star formation rates of
+The relationship between the stellar masses and star formation rates of
 galaxies reveal a bimodality in the galaxy population with star-forming
-galaxies forming the ``star formation sequence''~\citep{noeske2007, daddi2007,
-salim2007}.
-
-
-or quiescent
-fraction~\citep{kauffmann2003a, blanton2003, baldry2006, taylor2009}, and their
-evolution are now well understood. 
-Many global scaling relations of galaxy propreties such as the mass-metallicity
-relation~\citep{tremonti2004} or
-
-also been firmly established. 
-
+galaxies lying on a tightly correlated ``star formation
+sequence''~\citep[SFS;][]{noeske2007, daddi2007, salim2007, speagle2014,
+hahn2019}.
+From $z\sim 2$, there is an overall decline in star formation rates of galaxies
+in the SFS. 
+This is accompanied by an increase in the fraction of quiescent galaxies caused
+by the quenching of star formation in some galaxies~\citep{kauffmann2003a,
+blanton2003, baldry2006, taylor2009}. 
+Additional scaling relations among galaxy propreties such as the
+mass-metallicity relation~\citep{tremonti2004} or \todo{add more scaling
+relations here} have also been firmly established. 
+They connect \todo{some physical insight} 
 More precise and accurate measurements of the statistical distributions of the
 properties for galaxy populations at different cosmic epochs have the potential
 to shed further light on galaxy formation and evolution. 
@@ -62,7 +62,8 @@ well controlled systematics and well understood selection functions.
 
 One survey that will provide galaxy samples with unprecedented statistical power
 is the Dark Energy Spectrscopic
-Instrument~\citep[DESI;][]{desicollaboration2016, desicollaboration2016a}. 
+Instrument~\citep[DESI;][]{desicollaboration2016, desicollaboration2016a,
+abareshi2022}. 
 Over its 5 year operation, DESI will observe galaxy spectra using the 4-meter
 Mayll telescope at Kitt Peak National Observatory with a focal plane filled
 with 5000 robotically-actuated fibers that direct the light to ten optical
@@ -75,7 +76,7 @@ Surveys Data Release 9~\citep[LS;][]{dey2019}.
 LS is a combination of three public projects (Dark Energy Camera Legacy Survey,
 Beijing-Arizona Sky Survey, and Mayall $z$-band Legacy Survey) that jointly
 imaged the DESI footprint in three optical bands ($g$, $r$, and $z$). 
-DESI began its main observing in May 14, 2021. 
+DESI began observing its main survey in May 14, 2021. 
 
 As part of the survey, DESI is conducting the Bright Galaxy
 Survey~\citep[BGS;][]{hahn2022}.
@@ -99,31 +100,44 @@ BGS will also be accompanied by a value-added catalog: the Probabilistic
 Value-Added BGS~\citep[PROVABGS;][]{hahn2022, kwon2022}.  
 For every BGS galaxy, PROVABGS will provide physical properties such as stellar
 mass ($M_*$), average star formation rate ($\overline{\rm SFR}$), stellar
-metallicity $Z$, stellar age $t_{\rm age}$, and dust content. 
-These galaxy properties will be inferred using state-of-the-art Spectral Energy
+metallicity ($Z_*$), stellar age ($t_{\rm age}$), and dust content. 
+These galaxy properties will be from state-of-the-art Spectral Energy
 Distribution (SED) modeling of both DESI photometry and spectroscopy in a full
 Bayesian inference framework. 
+The SED model is designed to minimize model misspecification by using a highly
+flexible non-parameteric star formation and metallicity histories as well as a
+flexible dust attenuation model.
+Furthermore, the properties will be inferred using a fully Bayesian inference
+framework and provide statistically rigorous estimates of uncertainties and
+degeneracies among the parameters.  
 Ultimately, PROVABGS will provide consistently measured galaxy properties that
 will enable analyses to fully take advantage of the statistical power of BGS
 with new techniques and approaches. 
 
-A key application for PROVABGS will be measuring population statistics in a 
-statistically correct  
-% a statistically rigorous probabilistic graphical model of redshift-dependent photometry, which correctly propagates the redshift uncertainty information
+A key application for PROVABGS will be measuring population statistics using 
+statistically rigorous methodology that correctly propagates the uncertainties
+in galaxy property measurements. 
+Current population statistics are by and large derived from simply binning
+best-fit point estimates of galaxy properties. 
+\cite{malz2020} demonstrated, in the context of inferring redshif distributions
+from individual photometric redshift measurements, that using point estimates
+is statistically incorrect and can lead to biased redshift distributions. 
+Simiarly, the standard approach can also lead to bias population statistics. 
 
-emphasize the Bayesian posteriors here 
-
+Instead, we can estimate population statistics from combining individual
+PROVABGS posteriors of galaxy properties using population inference in a
+hierarchical Bayesian framework~\citep[\emph{e.g.}][]{hogg2010,
+foreman-mackey2014, baronchelli2020}.
+This approach 
+\todo{summary of why its better} 
 In this work, we present the first of such population statistic measurement for
 BGS: the probabilistic stellar mass function (pSMF). 
 
-{\color{red} why this work?} 
-In this work, we present the pSMF for galaxies in the Bright Galaxy Survey
-observed as part of the DESI One-Percent Survey, a survey validation program
-conducted before the main survey operations. 
-
-Furthermore, in this work we present the statistical methodology as well as the
-methodology for accounting for observational incompleteness. 
-
+In particular, we present the pSMF of BGS galaxies observed during the DESI
+One-Percent Survey, a survey validation program conducted before the main
+survey operations. 
+We also present the statistical methodology for the population inference as
+well as the our methods for accounting for observational incompleteness. 
 We begin in Section~\ref{sec:edr} with an overview of the BGS galaxies observed
 during the DESI One-Percent Survey. 
 Then, in Section~\ref{sec:provabgs}, we briefly summarize the PROVABGS SED

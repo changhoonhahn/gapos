@@ -1,12 +1,12 @@
 \section{PROVABGS SED Modeling} \label{sec:provabgs}
 % brief explanation of the PROVABGS SED modeling 
-For each BGS galaxy, we derive its $M_*$ and other properties, 
+For each BGS galaxy, we derive its $M_*$ and other physical properties, 
 $\overline{\rm SFR}$, $Z_{\rm MW}$, and $t_{\rm age, MW}$ from DESI
 photometry and spectroscopy using the PROVABGS SED modeling
 framework~\citep{hahn2022}.  
 PROVABGS models galaxy SEDs using stellar population synthesis with
 non-parametric star-formation history (SFH) with a starburst, a non-parametric
-metallicity history (ZH) that varies with time, and a flexible dust
+metallicity history (ZH) that evolves with time, and a flexible dust
 attenuation prescription.
 The non-parameteric SFH and ZH prescriptions are derived from SFHs and ZHs of
 simulated galaxies in the Illustris hydrodynamic
@@ -29,10 +29,10 @@ In total, $\theta$ has 13 parameters: $M_*$, 6 parameters specifying the SFH
 parameters specifying ZH ($\gamma_1, \gamma_2$), 3 parameters specifying
 dust attenuation ($\tau_{\rm BC}, \tau_{\rm ISM}, n_{\rm dust}$), and a
 nuisance parameter for the fiber aperture effect. 
-Posteriors have distinct advantages over point estimates because they
-accurately estimate uncertainties and degeneracies among galaxy properties.
-Furthermore, as we later demonstrate, they are essential for principled
-population inference: \eg~SMF.  
+Posteriors accurately estimate uncertainties and degeneracies among galaxy
+properties. 
+Furthermore, as we later demonstrate, they are essential for statistically
+rigorous hierarchical population inference.
 
 In practice, accurately estimating a 13 dimensional posterior requires a large
 number ($\gtrsim$100,000) SED model evaluations, which requires prohibitive
@@ -42,13 +42,13 @@ To address this challenge, PROVABGS samples the posterior using the
 with the {\sc zeus} Python package\footnote{https://zeus-mcmc.readthedocs.io/}.
 PROVABGS further accelerates the inference by using neural emulators for the
 SED models. 
-The emulators are accurate to subpercent level and $>100\times$ faster than the
+The emulators are accurate to subpercent level and >100$\times$ faster than the
 original SED model based on FSPS~\citep{kwon2022}. 
 With {\sc zeus} and neural emulation, deriving a posterior takes $\sim$5 min
 per galaxy with PROVABGS.
 Moreover, \cite{hahn2022} demonstrated PROVABGS can accurately infer $M_*$
 overall the full expected $M_*$ range of BGS, using forward modeled synthetic
-DESI observations. 
+DESI BGS observations. 
 
 \begin{figure}
 \begin{center}
@@ -60,8 +60,7 @@ DESI observations.
         Bright galaxy with $z=0.2242$ (target ID: 39627757520424630) inferred
         using the PROVABGS SED modeling framework from DESI photometry and
         spectroscopy. 
-        The contours mark the {\color{red} X, X, and X} percentiles of
-        posterior. 
+        The contours mark the 12, 40, 68, and 86 percentiles of the posterior. 
         With the PROVABGS posteriors, we accurately estimate the galaxy
         properties, their uncertainties, and any degeneracies among them. 
         {\em Bottom panels}: 
@@ -99,8 +98,7 @@ framework for a randomly selected BGS Bright galaxy with $z=0.2242$
 In the top panels, we present the posteriors of galaxy properties, $M_*$, 
 $\overline{\rm SFR}$, $Z_{\rm MW}$, and $t_{\rm age, MW}$, inferred from DESI
 photometry and spectroscopy. 
-We mark the {\color{red} X, X, and X} percentiles of posterior with the
-contours. 
+We mark the 12, 40, 68, and 86 percentiles of posterior with the contours. 
 The posteriors illustrate that we can precisely measure the properties of BGS
 galaxies from DESI photometry and spectroscopy. 
 Furthermore, with the full posterior, we accurately estimate the uncertainties
@@ -119,4 +117,4 @@ In Figure~\ref{fig:mstar_z}, we present the best-fit $M_*$ measurements as a
 function of $z$ for the BGS galaxies in DESI One-Percent Survey. 
 We mark the galaxies in the BGS Bright sample in blue and the ones in the BGS
 Faint sample in orange. 
-We infer the posteriors of 143,017 BGS Bright and 95,499 BGS Faint galaxies. 
+%We infer the posteriors of 143,017 BGS Bright and 95,499 BGS Faint galaxies. 
