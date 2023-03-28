@@ -49,11 +49,11 @@ p(\phi \given \{{\bfi X_i}\})
     =&~\frac{p(\phi)}{p(\{{\bfi X_i}\})}\prod\limits_{i=1}^N\int p({\bfi X_i} \given \theta_i)~p(\theta_i \given \phi)~{\rm d}\theta_i\\
     =&~\frac{p(\phi)}{p(\{{\bfi X_i}\})}\prod\limits_{i=1}^N\int \frac{p(\theta_i \given {\bfi X_i})~p({\bfi X_i})}{p(\theta_i)}~p(\theta_i \given \phi)~{\rm d}\theta_i\\
     =&~p(\phi)\prod\limits_{i=1}^N\int \frac{p(\theta_i \given {\bfi X_i})~p(\theta_i \given \phi)}{p(\theta_i)}~{\rm d}\theta_i. 
-\intertext{
-    We can estimate the integral using $S_i$ Monte Carlo samples from the
-    individual posteriors $p(\theta_i \given {\bfi X_i})$: 
-}
-    \approx&~p(\phi)\prod\limits_{i=1}^N\frac{1}{S_i}\sum\limits_{j=1}^{S_i}
+\end{align}
+\noindent We can estimate the integral using $S_i$ Monte Carlo samples from
+the individual posteriors $p(\theta_i \given {\bfi X_i})$: 
+\begin{align}
+    p(\phi \given \{{\bfi X_i}\}) \approx~p(\phi)\prod\limits_{i=1}^N\frac{1}{S_i}\sum\limits_{j=1}^{S_i}
     \frac{p(\theta_{i,j} \given \phi)}{p(\theta_{i,j})}.
 \end{align} 
 

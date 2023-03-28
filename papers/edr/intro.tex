@@ -39,7 +39,7 @@ by previous observations and open new discovery space.
 They can also be used to test galaxy formation models spanning 
 empirical models~\citep[\emph{e.g.} {\sc UniverseMachine};][]{behroozi2019}, 
 semi-analytic models~\citep[\emph{e.g.}][]{benson2012, henriques2015,
-somerville2015}, and 
+somerville2015a}, and 
 hydrodyanmical simulations~\citep[see][for a review]{somerville2015a}. 
 Empirical models, for example, have been used to measure the timescale of 
 timescale of star formation quenching~\citep{wetzel2013, hahn2017, tinker2017}
@@ -55,7 +55,7 @@ donnari2021}.
 Soon machine learning techniques for accelerating and emulating simulations
 will enable us to go beyond such comparisons and broadly explore parameter
 space and galaxy formation
-models~\citep[\emph{e.g.}][]{villaescusa-navarro2021}.
+models~\citep[\emph{e.g.}][]{villaescusa-navarro2022a, jamieson2022}.
 While many different approaches are available for expanding our understanding
 of galaxies, they all require statistically powerful galaxy samples with
 well controlled systematics and well understood selection functions. 
@@ -79,7 +79,7 @@ imaged the DESI footprint in three optical bands ($g$, $r$, and $z$).
 DESI began observing its main survey in May 14, 2021. 
 
 As part of the survey, DESI is conducting the Bright Galaxy
-Survey~\citep[BGS;][]{hahn2022}.
+Survey~\citep[BGS;][]{hahn2022c}.
 BGS spans the same 14,000${\rm deg}^2$ footprint and will include low redshift
 $z< 0.6$ galaxies that can be observed during bright time, when the night sky
 is ${\sim}2.5\times$ brighter than nominal dark conditions,
@@ -88,7 +88,7 @@ magnitude-limited sample of ${\sim}10$ million galaxies, and the BGS Faint
 sample, a fainter $19.5 < r < 20.175$ sample of ${\sim 5}$ million galaxies
 selected using a surface brightness and color. 
 The selection and completeness of the BGS samples are characterized in detail
-in \cite{hahn2023}. 
+in \cite{hahn2022c}. 
 Compared to the seminal SDSS main galaxy survey, BGS will provide a galaxy
 sample two magnitudes deeper, over twice the sky, and double the median
 redshift $z{\sim}0.2$. 
@@ -122,14 +122,17 @@ best-fit point estimates of galaxy properties.
 \cite{malz2020} demonstrated, in the context of inferring redshif distributions
 from individual photometric redshift measurements, that using point estimates
 is statistically incorrect and can lead to biased redshift distributions. 
-Simiarly, the standard approach can also lead to bias population statistics. 
+Simiarly, the standard approach can also lead to biased population statistics. 
 
 Instead, we can estimate population statistics from combining individual
 PROVABGS posteriors of galaxy properties using population inference in a
 hierarchical Bayesian framework~\citep[\emph{e.g.}][]{hogg2010,
 foreman-mackey2014, baronchelli2020}.
-This approach 
-\todo{summary of why its better} 
+This approach correctly propagates the uncertainties in the galaxy properties 
+from the individual posteriors of galaxies. 
+As a result, they significantly improve the accuracy of population statistics
+measurements and will enable more accurate measurements of key galaxy scaling
+relations. 
 In this work, we present the first of such population statistic measurement for
 BGS: the probabilistic stellar mass function (pSMF). 
 
@@ -144,6 +147,8 @@ Then, in Section~\ref{sec:provabgs}, we briefly summarize the PROVABGS SED
 modeling framework used to infer the physical properties of the BGS galaxies.
 Afterwards, we present the pSMF inferred from the BGS observations in
 Section~\ref{sec:results}. 
-We summarize and discuss our results in Section~\cite{sec:summary}.
-Throughout the 
-We use XXXXXX cosmology.
+We summarize and discuss our results in Section~\ref{sec:summary}.
+Throughout this work, we assume AB magnitudes and a flat $\Lambda$CDM cosmology
+described by the final Planck results~\citep{planckcollaboration2014a}: .
+$\Omega_m = 0.307$, $\Omega_b = 0.0483$, $H_0=67.8\,{\rm km\,s^{-1} Mpc^{-1}}$,
+$A_s=2.19\times10^{-9}$, $n_s=0.9635$
