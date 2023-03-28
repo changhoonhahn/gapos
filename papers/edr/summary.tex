@@ -2,44 +2,63 @@
 Over its five year operation, starting on May 2021, the DESI Bright Galaxy
 Survey (BGS) will observe the spectra of $\sim$15 million galaxies out to 
 $z < 0.6$ over 14,000 ${\rm deg}^2$.  
-BGS will produce two galaxy samples: a $r < 19.5$ magnitude-limited BGS Bright
-sample and a fainter $19.5 < r < 20.175$ surface brightness and color selected
-BGS Faint sample. 
-Compared to the SDSS main galaxy survey, BGS galaxy samples will be two
-magnitudes deeper, over twice the sky, and double the median redshift
+BGS will produce two main galaxy samples: a $r < 19.5$ magnitude-limited BGS
+Bright sample and a fainter $19.5 < r < 20.175$ surface brightness and color
+selected BGS Faint sample. 
+Compared to the SDSS main galaxy survey, the BGS galaxy samples will be over
+two magnitudes deeper, twice the sky, and double the median redshift
 $z\sim0.2$. 
-Furthermore, each galaxy in BGS will have measurements of its physical
-properties (\emph{e.g.} $M_*$, SFR, $Z_*$, $t_{\rm age}$) derived using
-state-of-the-art SED mdoeling of DESI spectrophotometry from PROVABGS. 
+They will include diverse galaxy subpopulations that have the potential to
+reveal new trends among galaxies that were preivously undetectable and open new
+discovery space. 
 
-The BGS samples will include diverse galaxy subpopulations that can be used to
-reveal new trends among galaxies that were preivously undetectable and open
-new discovery space. 
-They will also provide statistical power to measure scaling relations and
-population statistics to characterize the global galaxy population and test
-galaxy formation models with unprecedented precision.
+In addition, each galaxy in BGS will have measurements of its detailed physical
+properties (\emph{e.g.} $M_*$, SFR, $Z_*$, $t_{\rm age}$) from PROVABGS. 
+These properties will be inferred from DESI spectrophotometry using
+state-of-the-art  SED modeling in a fully Bayesian inference framework. 
+PROVABGS will provide statistically rigorous estimates of uncertainties and
+degeneracies among the properties.
+With these measurements, BGS will be a consistent and statistical powerful
+galaxy sample to measure scaling relations and population statistics to
+characterize the global galaxy population and test galaxy formation models
+with unprecedented precision.
 
 In this work, we showcase the potential of BGS by presenting the probabilistic
-stellar mass function (pSMF) using only $\sim$250,000 BGS galaxies observed
+stellar mass function (pSMF) using $\sim$250,000 BGS galaxies observed solely
 during one of DESI's survey validation program.
-We present the hierarhical population inference framework that enable us to
-accurately propgate uncertainties on galaxy properties ($M_*$) to population
-statistics (pSMF). 
-We also describe how we account for selection effect and incompleteness
-(Appendix~\ref{sec:spec_comp}).  
+The pSMF are derived using a hierarhical population inference framework that 
+statistically rigorously propgates uncertainties on $M_*$ and provide improve
+estimates of the SMF at the lowest and highest $M_*$ regimes. 
+We also describe how we account for selection effect and incompleteness in the
+BGS observations (Appendix~\ref{sec:spec_comp}).  
+Overall, we find good agreement between our pSMF and previous SMF measurements
+in the literature. 
+We also examine the pSMF of the star-forming and quiescent galaxy population
+classified using a simple $\overline{\rm sSFR} = 10^{-11.2}{\rm yr}^{-1}$ cut
+and find qualitative agreement with previous works. 
 
+This work is first of a series of papers that will present population
+statistics for BGS galaxies using PROVABGS. 
+For the pSMF in this work, we used a flexible GMM to provide a non-parametric
+measurement of the SMF.
+In a subsequent work, Speranza~\etal~(in prep.), we will present the pSMF of BGS
+measured using a parametric model with continuous redshift evolution. 
+In another work, we will present in depth comparison $M_*$ measured using
+different methodologies and assumptions. 
+Lastly, the hierarchical population inference framework presented in this work
+can be extended to population statistics beyond the SMF. 
+We will extend the framework to the SFR-$M_*$ distribution and present the
+probabilistic SFR-$M_*$ distribution and quiescent fraction in future work. 
 
-All of the pSMFs presented in this work are measured from BGS galaxies observed during the DESI One-Percent Survey. 
-DESI has already completed nearly two years of observations.
-\todo{current status of BGS} 
-
-
-\todo{subsequent works}
-federico's paper as subsequent work with schetcher function fits
-
-detailed stellar mass comparison project. 
-
-Furthermore, in subsequent work we will extend the hierarhical population
-inference framework to the SFR-$M_*$ distribution and present the
-probabilistic SFR-$M_*$ distribution and quiescent fraction. 
-
+All of the pSMFs presented in this work are measured from BGS galaxies observed
+from April to May of 2021 during the DESI One-Percent Survey.
+Since then, DESI has already completed nearly two years of observations.
+As of writing (March 2023), DESI has observed nearly 20 million galaxy spectra
+in total and nearly 9 million BGS galaxy spectra.  
+With three out of the five years of operation remaining, BGS has completed
+completed $\sim$60\% of its observations and is ahead of schedule.  
+DESI observations will be publicly released periodically, starting with the
+Early Data Release (EDR) later this year. 
+The EDR will include observations from the One-Percent Survey used in this
+this work. 
+An accompanying PROVABGS catalog will be released with each data release.
